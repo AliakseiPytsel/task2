@@ -21,7 +21,7 @@ public class ParagraphParser extends AbstractParser {
         Matcher matcher = SENTENCE_PATTERN.matcher(text);
         while (matcher.find()) {
             String sentenceText = matcher.group().strip();
-            if (!sentenceText.isEmpty()) {
+            if (!sentenceText.isBlank()) {
                 paragraph.add(getNext().parse(sentenceText));
             }
         }

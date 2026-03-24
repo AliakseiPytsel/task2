@@ -20,7 +20,7 @@ public class TextDocumentParser extends AbstractParser {
         String[] paragraphs = PARAGRAPH_DELIMITER.split(text.trim());
         for (String paragraph : paragraphs) {
             String trimmed = paragraph.strip();
-            if (!trimmed.isEmpty()) {
+            if (!trimmed.isBlank()) {
                 document.add(getNext().parse(trimmed));
             }
         }

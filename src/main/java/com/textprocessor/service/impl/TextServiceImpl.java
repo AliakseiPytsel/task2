@@ -79,7 +79,7 @@ public class TextServiceImpl implements TextService {
         Set<String> words = new HashSet<>();
         for (TextComponent lexemeComp : sentence.getChildren()) {
             String word = lexemeComp.restore().toLowerCase().replaceAll("[^\\p{L}]", "");
-            if (!word.isEmpty()) {
+            if (!word.isBlank()) {
                 words.add(word);
             }
         }

@@ -58,7 +58,7 @@ class TextProcessorTest {
         AbstractTextComposite sentence = (AbstractTextComposite) para.get(0);
         AbstractTextComposite lexeme   = (AbstractTextComposite) sentence.get(0);
         AbstractTextComposite word     = (AbstractTextComposite) lexeme.get(0);
-        assertEquals(5, word.size()); // "River" - 5 букв
+        assertEquals(5, word.size());
     }
 
     @Test
@@ -81,7 +81,7 @@ class TextProcessorTest {
         TextDocument doc = (TextDocument) chain.parse("Go.");
         AbstractTextComposite para     = (AbstractTextComposite) doc.get(0);
         AbstractTextComposite sentence = (AbstractTextComposite) para.get(0);
-        assertEquals(3, sentence.countSymbols()); // "Go" + "."
+        assertEquals(3, sentence.countSymbols());
     }
 
     @Test

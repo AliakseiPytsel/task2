@@ -19,7 +19,7 @@ public class SentenceParser extends AbstractParser {
         Sentence sentence = new Sentence();
         String[] tokens = WHITESPACE.split(text.strip());
         for (String token : tokens) {
-            if (!token.isEmpty()) {
+            if (!token.isBlank()) {
                 sentence.add(getNext().parse(token));
             }
         }
