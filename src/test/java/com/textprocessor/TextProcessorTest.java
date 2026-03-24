@@ -57,7 +57,10 @@ class TextProcessorTest {
         AbstractTextComposite para     = (AbstractTextComposite) doc.get(0);
         AbstractTextComposite sentence = (AbstractTextComposite) para.get(0);
         AbstractTextComposite lexeme   = (AbstractTextComposite) sentence.get(0);
-        assertEquals(5, lexeme.size()); // "Hello" - без точки, точка уходит ко второй лексеме
+        // Лексема "Hello" содержит один Word
+        AbstractTextComposite word = (AbstractTextComposite) lexeme.get(0);
+        // Word содержит 5 символов-букв
+        assertEquals(5, word.size());
     }
 
     @Test
