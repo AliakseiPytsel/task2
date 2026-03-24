@@ -17,9 +17,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class TextProcessorTest {
 
     private static final String SAMPLE =
-            "It has survived not only five centuries.\n" +
-                    "It was popularised in the release of Lorem.\n" +
-                    "Bye.";
+            "The cat sat on the mat.\n" +
+                    "The dog ran across the field.\n" +
+                    "Stop.";
 
     private AbstractParser chain;
     private TextService service;
@@ -38,50 +38,50 @@ class TextProcessorTest {
 
     @Test
     void parsedParagraphHasCorrectSentenceCount() throws TextProcessingException {
-        TextDocument doc = (TextDocument) chain.parse("Hello world. Goodbye world.");
+        TextDocument doc = (TextDocument) chain.parse("The sky is blue. The grass is green.");
         AbstractTextComposite para = (AbstractTextComposite) doc.get(0);
         assertEquals(2, para.size());
     }
 
     @Test
     void parsedSentenceHasCorrectLexemeCount() throws TextProcessingException {
-        TextDocument doc = (TextDocument) chain.parse("One two three.");
+        TextDocument doc = (TextDocument) chain.parse("Birds fly over mountains.");
         AbstractTextComposite para     = (AbstractTextComposite) doc.get(0);
         AbstractTextComposite sentence = (AbstractTextComposite) para.get(0);
-        assertEquals(3, sentence.size());
+        assertEquals(4, sentence.size());
     }
 
     @Test
     void parsedLexemeHasCorrectSymbolCount() throws TextProcessingException {
-        TextDocument doc = (TextDocument) chain.parse("Hello world.");
+        TextDocument doc = (TextDocument) chain.parse("River flows quickly.");
         AbstractTextComposite para     = (AbstractTextComposite) doc.get(0);
         AbstractTextComposite sentence = (AbstractTextComposite) para.get(0);
         AbstractTextComposite lexeme   = (AbstractTextComposite) sentence.get(0);
-        AbstractTextComposite word = (AbstractTextComposite) lexeme.get(0);
-        assertEquals(5, word.size());
+        AbstractTextComposite word     = (AbstractTextComposite) lexeme.get(0);
+        assertEquals(5, word.size()); // "River" - 5 букв
     }
 
     @Test
     void restoreContainsOriginalWords() throws TextProcessingException {
-        TextDocument doc = (TextDocument) chain.parse("Hello world. Bye.");
+        TextDocument doc = (TextDocument) chain.parse("Autumn leaves fall slowly. Winter comes after.");
         String restored = doc.restore();
-        assertTrue(restored.contains("Hello"));
-        assertTrue(restored.contains("world"));
-        assertTrue(restored.contains("Bye"));
+        assertTrue(restored.contains("Autumn"));
+        assertTrue(restored.contains("leaves"));
+        assertTrue(restored.contains("Winter"));
     }
 
     @Test
     void countSymbolsIsPositive() throws TextProcessingException {
-        TextDocument doc = (TextDocument) chain.parse("Hello.");
+        TextDocument doc = (TextDocument) chain.parse("Clouds move across the sky.");
         assertTrue(doc.countSymbols() > 0);
     }
 
     @Test
     void countSymbolsMatchesExpected() throws TextProcessingException {
-        TextDocument doc = (TextDocument) chain.parse("Hi.");
+        TextDocument doc = (TextDocument) chain.parse("Go.");
         AbstractTextComposite para     = (AbstractTextComposite) doc.get(0);
         AbstractTextComposite sentence = (AbstractTextComposite) para.get(0);
-        assertEquals(3, sentence.countSymbols());
+        assertEquals(3, sentence.countSymbols()); // "Go" + "."
     }
 
     @Test
@@ -89,7 +89,7 @@ class TextProcessorTest {
         TextDocument doc = (TextDocument) chain.parse(SAMPLE);
         Map<String, List<Sentence>> result = service.findMaxSentencesWithSameWord(doc);
         assertFalse(result.isEmpty());
-        assertTrue(result.containsKey("it"));
+        assertTrue(result.containsKey("the"));
     }
 
     @Test
@@ -102,7 +102,7 @@ class TextProcessorTest {
 
     @Test
     void task1SingleSentenceReturnsEmpty() throws TextProcessingException {
-        TextDocument doc = (TextDocument) chain.parse("Only one sentence here.");
+        TextDocument doc = (TextDocument) chain.parse("The sun rises in the east.");
         assertTrue(service.findMaxSentencesWithSameWord(doc).isEmpty());
     }
 
@@ -123,7 +123,7 @@ class TextProcessorTest {
 
     @Test
     void task3SwapsFirstAndLast() throws TextProcessingException {
-        TextDocument doc = (TextDocument) chain.parse("One two three four five.");
+        TextDocument doc = (TextDocument) chain.parse("The wind blows through ancient trees.");
         AbstractTextComposite para = (AbstractTextComposite) doc.get(0);
         Sentence sentence = (Sentence) para.get(0);
         String originalFirst = sentence.get(0).restore();
@@ -135,7 +135,7 @@ class TextProcessorTest {
 
     @Test
     void task3SingleLexemeSentenceUnchanged() throws TextProcessingException {
-        TextDocument doc = (TextDocument) chain.parse("Bye.");
+        TextDocument doc = (TextDocument) chain.parse("Run.");
         AbstractTextComposite para = (AbstractTextComposite) doc.get(0);
         Sentence sentence = (Sentence) para.get(0);
         String before = sentence.restore();
