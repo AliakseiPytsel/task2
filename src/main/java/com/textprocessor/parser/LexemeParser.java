@@ -1,8 +1,8 @@
 package com.textprocessor.parser;
 
 import com.textprocessor.composite.TextComposite;
-import com.textprocessor.composite.impl.Symbol;
-import com.textprocessor.composite.impl.DefaultTextComposite;
+import com.textprocessor.composite.Symbol;
+import com.textprocessor.composite.DefaultTextComposite;
 import com.textprocessor.type.ElementType;
 
 import java.util.regex.Matcher;

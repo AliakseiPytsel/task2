@@ -1,6 +1,5 @@
-package com.textprocessor.composite.impl;
+package com.textprocessor.composite;
 
-import com.textprocessor.composite.TextComponent;
 import com.textprocessor.type.ElementType;
 
 public class Letter implements TextComponent {
@@ -19,11 +18,6 @@ public class Letter implements TextComponent {
     @Override
     public int getCount() {
         return 1;
-    }
-
-    @Override
-    public String getText() {
-        return String.valueOf(letter);
     }
 
     @Override

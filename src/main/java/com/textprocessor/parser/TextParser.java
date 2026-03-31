@@ -1,7 +1,7 @@
 package com.textprocessor.parser;
 
 import com.textprocessor.composite.TextComposite;
-import com.textprocessor.composite.impl.DefaultTextComposite;
+import com.textprocessor.composite.DefaultTextComposite;
 import com.textprocessor.type.ElementType;
 
 public class TextParser extends AbstractParser {

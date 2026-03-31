@@ -32,7 +32,7 @@ public class DuplicateWordService {
         for (TextComponent lexeme : ((TextComposite) sentence).getChildren()) {
             for (TextComponent word : ((TextComposite) lexeme).getChildren()) {
                 if (word.getType() == ElementType.WORD) {
-                    String wordText = word.getText().toLowerCase();
+                    String wordText = word.toString().toLowerCase();
                     if (!words.add(wordText)) {
                         return true;
                     }

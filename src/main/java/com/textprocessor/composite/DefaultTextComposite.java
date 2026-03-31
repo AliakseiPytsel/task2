@@ -1,7 +1,5 @@
-package com.textprocessor.composite.impl;
+package com.textprocessor.composite;
 
-import com.textprocessor.composite.TextComponent;
-import com.textprocessor.composite.TextComposite;
 import com.textprocessor.type.ElementType;
 
 import java.util.ArrayList;
@@ -49,11 +47,6 @@ public class DefaultTextComposite implements TextComposite {
             count += component.getCount();
         }
         return count;
-    }
-
-    @Override
-    public String getText() {
-        return toString();
     }
 
     @Override
