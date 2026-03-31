@@ -1,19 +1,14 @@
 package com.textprocessor.parser;
 
-import com.textprocessor.composite.TextComponent;
-import com.textprocessor.exception.TextProcessingException;
+import com.textprocessor.composite.TextComposite;
 
 public abstract class AbstractParser {
-    private AbstractParser next;
 
-    public AbstractParser setNext(AbstractParser next) {
-        this.next = next;
-        return next;
+    protected AbstractParser nextParser;
+
+    public void setNextParser(AbstractParser nextParser) {
+        this.nextParser = nextParser;
     }
 
-    public AbstractParser getNext() {
-        return next;
-    }
-
-    public abstract TextComponent parse(String text) throws TextProcessingException;
+    public abstract TextComposite parse(String text);
 }

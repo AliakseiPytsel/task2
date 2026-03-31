@@ -1,6 +1,9 @@
 package com.textprocessor.composite;
 
+import com.textprocessor.type.ElementType;
+
 public interface TextComponent {
-    String restore();
-    int countSymbols();
+    ElementType getType();
+    int getCount();
+    String getText();
 }
